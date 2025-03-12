@@ -68,7 +68,10 @@
         "symfony/polyfill-php82": "*"
     },
     "scripts": {
-      "cache-clear": "@php vendor/bin/psalm",
+      "cache-clear": "@php bin/console cache:clear",
+
+      "migrations-diff": "@php bin/console doctrine:migrations:diff --formatted",
+      "migrations-migrate": "@php bin/console doctrine:migrations:migrate --no-interaction",
 
       "psalm": "@php vendor/bin/psalm",
       "psalm-clean": [

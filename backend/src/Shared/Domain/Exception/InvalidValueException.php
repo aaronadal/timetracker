@@ -36,4 +36,11 @@ final class InvalidValueException extends DomainException
             "Invalid format for value <$value>: <$expectedFormat> expected",
         );
     }
+
+    public static function forDuplicatedValue(string $value): self
+    {
+        return new self(
+            "The value <$value> already exists",
+        );
+    }
 }

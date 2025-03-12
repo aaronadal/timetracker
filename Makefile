@@ -28,6 +28,13 @@ cache-clear:
 	docker exec -it timetracker.api composer run cache-clear
 
 
+migrations-diff:
+	docker exec -it timetracker.api composer run migrations-diff
+
+migrations-migrate:
+	docker exec -it timetracker.api composer run migrations-migrate
+
+
 composer-install:
 	docker exec -it timetracker.api composer install
 

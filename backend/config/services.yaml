@@ -5,6 +5,11 @@ services:
         autowire: true
         autoconfigure: true
 
+    _instanceof:
+        Core\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepositoryInterface:
+            tags:
+                - { name: core.persistence.doctrine.repository }
+
     App\:
         resource: '../app'
 
