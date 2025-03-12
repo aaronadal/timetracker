@@ -1,0 +1,16 @@
+includes:
+    - vendor/phpat/phpat/extension.neon
+    - vendor/phpstan/phpstan-mockery/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
+parameters:
+    level: 8
+    tmpDir: ./var/phpstan
+    paths:
+        - ./app
+        - ./src
+    ignoreErrors:
+        -
+            identifier: missingType.generics

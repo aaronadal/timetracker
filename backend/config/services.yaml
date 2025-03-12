@@ -1,0 +1,14 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../app'
+
+    Core\:
+        resource: '../src/'
+        exclude:
+            - '../src/Shared/Infrastructur/Symfony/Kernel.php'
