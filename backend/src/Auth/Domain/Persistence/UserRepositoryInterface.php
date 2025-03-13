@@ -14,7 +14,7 @@ interface UserRepositoryInterface
     public function search(UserId $id): ?User;
 
     /**
-     * @param non-empty-array<string, scalar> $criteria
+     * @param non-empty-array<string, scalar|null> $criteria
      *
      * @return list<User>
      */

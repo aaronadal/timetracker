@@ -17,7 +17,7 @@ interface AggregateRootManagerInterface
     public function search(UuidValueObject $id): ?AggregateRoot;
 
     /**
-     * @param non-empty-array<string, scalar> $criteria
+     * @param non-empty-array<string, scalar|null> $criteria
      *
      * @return list<AR>
      */

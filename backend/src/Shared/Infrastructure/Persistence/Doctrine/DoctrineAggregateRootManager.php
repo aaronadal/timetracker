@@ -4,9 +4,7 @@ namespace Core\Shared\Infrastructure\Persistence\Doctrine;
 
 use Core\Shared\Domain\Entity\AggregateRoot;
 use Core\Shared\Domain\Entity\UuidValueObject;
-use Core\Shared\Domain\Exception\InvalidValueException;
 use Core\Shared\Domain\Persistence\AggregateRootManagerInterface;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -67,10 +65,15 @@ final class DoctrineAggregateRootManager implements AggregateRootManagerInterfac
     {
         $qb = $this->repository->createQueryBuilder('ar');
         foreach ($criteria as $field => $value) {
-            $qb->andWhere(
-                $qb->expr()->eq("ar.$field", ":$field"),
-            );
-            $qb->setParameter($field, $value);
+            if($value === null) {
+                $qb->andWhere($qb->expr()->isNull("ar.$field"));
+            }
+            else {
+                $qb->andWhere(
+                    $qb->expr()->eq("ar.$field", ":$field"),
+                );
+                $qb->setParameter($field, $value);
+            }
         }
 
         /** @var array<array-key, AR> $result */
