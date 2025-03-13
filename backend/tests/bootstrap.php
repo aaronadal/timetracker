@@ -11,3 +11,5 @@ if (method_exists(Dotenv::class, 'bootEnv')) {
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
 }
+
+Test\Unit\Shared\Infrastructure\Testing\PhpUnit\Bootstrap::bootstrap();
