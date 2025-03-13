@@ -40,6 +40,11 @@ abstract class ValueObject
         return "{$this->value()}";
     }
 
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
+
     public function equals(ValueObject $other): bool
     {
         return $other instanceof $this && $this->value() === $other->value();

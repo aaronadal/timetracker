@@ -10,10 +10,15 @@ services:
             tags:
                 - { name: core.persistence.doctrine.repository }
 
+        Core\Shared\Infrastructure\Persistence\Doctrine\Types\AbstractType:
+            tags:
+                - { name: core.persistence.doctrine.type }
+
     App\:
         resource: '../app'
 
     Core\:
         resource: '../src/'
         exclude:
-            - '../src/Shared/Infrastructur/Symfony/Kernel.php'
+            - '../src/Shared/Infrastructure/Persistence/Doctrine/DoctrineAggregateRootManager.php'
+            - '../src/Shared/Infrastructure/Symfony/Kernel.php'

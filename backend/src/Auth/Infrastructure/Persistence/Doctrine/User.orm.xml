@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Core\Auth\Domain\Entity\User" table="auth__users">
+        <unique-constraints>
+            <unique-constraint name="unq_name" columns="name"/>
+        </unique-constraints>
+
+        <id name="id" column="id" type="auth.user.id"/>
+
+        <field name="name" column="name" nullable="false" type="auth.user.name"/>
+        <field name="createdAt" column="created_at" nullable="false" type="auth.user.created_at"/>
+        <field name="updatedAt" column="updated_at" nullable="false" type="auth.user.updated_at"/>
+        <field name="deletedAt" column="deleted_at" nullable="true" type="auth.user.deleted_at"/>
+    </entity>
+</doctrine-mapping>
