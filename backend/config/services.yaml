@@ -28,6 +28,8 @@ services:
 
     App\:
         resource: '../app'
+        tags:
+            - { name: controller.service_arguments }
 
     Core\:
         resource: '../src/'
