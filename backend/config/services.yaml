@@ -6,6 +6,18 @@ services:
         autoconfigure: true
 
     _instanceof:
+        Core\Shared\Domain\Bus\CommandHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        Core\Shared\Domain\Bus\QueryHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+
+        Core\Shared\Domain\Bus\EventHandlerInterface:
+            tags:
+                - { name: messenger.message_handler, bus: event.bus }
+
         Core\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepositoryInterface:
             tags:
                 - { name: core.persistence.doctrine.repository }

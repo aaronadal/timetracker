@@ -1,0 +1,17 @@
+framework:
+    messenger:
+        default_bus: event.bus
+        buses:
+            command.bus: ~
+            query.bus: ~
+            event.bus: ~
+
+        transports:
+            command: '%env(COMMAND_BUS_DSN)%'
+            query: '%env(QUERY_BUS_DSN)%'
+            event: '%env(EVENT_BUS_DSN)%'
+
+        routing:
+            'Core\Shared\Domain\Bus\CommandInterface': command
+            'Core\Shared\Domain\Bus\QueryInterface': query
+            'Core\Shared\Domain\Bus\EventInterface': event
