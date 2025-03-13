@@ -2,13 +2,13 @@
 
 namespace Test\Mother\Auth\Domain\Entity;
 
-use Core\Auth\Domain\Entity\UserCreatedAt;
+use Core\Shared\Domain\Entity\CreatedAt;
 use Test\Mother\TimestampMother;
 
 final class UserCreatedAtMother
 {
-    public static function random(): UserCreatedAt
+    public static function random(): CreatedAt
     {
-        return UserCreatedAt::fromValue(TimestampMother::lastYear());
+        return CreatedAt::fromValue(TimestampMother::lastYear());
     }
 }

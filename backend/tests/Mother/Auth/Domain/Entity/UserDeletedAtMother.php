@@ -2,13 +2,13 @@
 
 namespace Test\Mother\Auth\Domain\Entity;
 
-use Core\Auth\Domain\Entity\UserDeletedAt;
+use Core\Shared\Domain\Entity\DeletedAt;
 use Test\Mother\TimestampMother;
 
 final class UserDeletedAtMother
 {
-    public static function random(): UserDeletedAt
+    public static function random(): DeletedAt
     {
-        return UserDeletedAt::fromValue(TimestampMother::lastYear());
+        return DeletedAt::fromValue(TimestampMother::lastYear());
     }
 }

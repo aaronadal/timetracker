@@ -3,8 +3,8 @@
 namespace Test\Unit\Auth\Application\Command;
 
 use Core\Auth\Application\Command\SignUpHandler;
-use Core\Auth\Domain\Entity\UserCreatedAt;
-use Core\Auth\Domain\Entity\UserUpdatedAt;
+use Core\Shared\Domain\Entity\CreatedAt;
+use Core\Shared\Domain\Entity\UpdatedAt;
 use Core\Shared\Domain\Exception\InvalidValueException;
 use Core\Shared\Domain\TimestampProvider;
 use Test\Mocker\Auth\Domain\Persistence\UserRepositoryMocker;
@@ -52,8 +52,8 @@ final class SignUpHandlerTest extends UnitTest
         $user = UserMother::createNotDeleted(
             $command->id,
             $command->name,
-            UserCreatedAt::fromValue($now),
-            UserUpdatedAt::fromValue($now),
+            CreatedAt::fromValue($now),
+            UpdatedAt::fromValue($now),
         );
 
         $this->repo->matching(['name' => $command->name->value()], []);

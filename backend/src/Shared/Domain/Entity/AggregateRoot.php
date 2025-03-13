@@ -6,9 +6,9 @@ abstract class AggregateRoot
 {
     public abstract function id(): UuidValueObject;
 
-    public abstract function createdAt(): TimestampValueObject;
+    public abstract function createdAt(): CreatedAt;
 
-    public abstract function updatedAt(): TimestampValueObject;
+    public abstract function updatedAt(): UpdatedAt;
 
-    public abstract function deletedAt(): ?TimestampValueObject;
+    public abstract function deletedAt(): ?DeletedAt;
 }

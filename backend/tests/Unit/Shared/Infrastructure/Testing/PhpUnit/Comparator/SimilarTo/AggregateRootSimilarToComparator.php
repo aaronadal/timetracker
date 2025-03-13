@@ -8,9 +8,6 @@ use SebastianBergmann\Comparator\Factory;
 final class AggregateRootSimilarToComparator extends AbstractSimilarToComparator
 {
     private const EXCLUDED_METHODS = [
-        'equals',
-        'id',
-        'pullEvents',
     ];
 
     public function __construct(Factory $factory)

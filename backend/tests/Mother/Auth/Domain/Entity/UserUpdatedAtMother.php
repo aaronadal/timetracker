@@ -2,13 +2,13 @@
 
 namespace Test\Mother\Auth\Domain\Entity;
 
-use Core\Auth\Domain\Entity\UserUpdatedAt;
+use Core\Shared\Domain\Entity\UpdatedAt;
 use Test\Mother\TimestampMother;
 
 final class UserUpdatedAtMother
 {
-    public static function random(): UserUpdatedAt
+    public static function random(): UpdatedAt
     {
-        return UserUpdatedAt::fromValue(TimestampMother::lastYear());
+        return UpdatedAt::fromValue(TimestampMother::lastYear());
     }
 }

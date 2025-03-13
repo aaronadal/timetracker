@@ -1,0 +1,7 @@
+POST {{ host }}/auth/sign-up
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Aarón Nadal"
+}

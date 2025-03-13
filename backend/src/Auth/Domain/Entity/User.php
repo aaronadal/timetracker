@@ -3,6 +3,9 @@
 namespace Core\Auth\Domain\Entity;
 
 use Core\Shared\Domain\Entity\AggregateRoot;
+use Core\Shared\Domain\Entity\CreatedAt;
+use Core\Shared\Domain\Entity\DeletedAt;
+use Core\Shared\Domain\Entity\UpdatedAt;
 
 final class User extends AggregateRoot
 {
@@ -11,18 +14,18 @@ final class User extends AggregateRoot
         return new self(
             id: $id,
             name: $name,
-            createdAt: UserCreatedAt::now(),
-            updatedAt: UserUpdatedAt::now(),
+            createdAt: CreatedAt::now(),
+            updatedAt: UpdatedAt::now(),
             deletedAt: null,
         );
     }
 
     public static function hydrate(
-        UserId $id,
-        UserName $name,
-        UserCreatedAt $createdAt,
-        UserUpdatedAt $updatedAt,
-        ?UserDeletedAt $deletedAt,
+        UserId     $id,
+        UserName   $name,
+        CreatedAt  $createdAt,
+        UpdatedAt  $updatedAt,
+        ?DeletedAt $deletedAt,
     ): User {
         return new self(
             id: $id,
@@ -34,11 +37,11 @@ final class User extends AggregateRoot
     }
 
     private function __construct(
-        private readonly UserId $id,
-        private readonly UserName $name,
-        private readonly UserCreatedAt $createdAt,
-        private UserUpdatedAt $updatedAt,
-        private ?UserDeletedAt $deletedAt,
+        private readonly UserId    $id,
+        private readonly UserName  $name,
+        private readonly CreatedAt $createdAt,
+        private UpdatedAt          $updatedAt,
+        private ?DeletedAt         $deletedAt,
     ) {
     }
 
@@ -52,17 +55,17 @@ final class User extends AggregateRoot
         return $this->name;
     }
 
-    public function createdAt(): UserCreatedAt
+    public function createdAt(): CreatedAt
     {
         return $this->createdAt;
     }
 
-    public function updatedAt(): UserUpdatedAt
+    public function updatedAt(): UpdatedAt
     {
         return $this->updatedAt;
     }
 
-    public function deletedAt(): ?UserDeletedAt
+    public function deletedAt(): ?DeletedAt
     {
         return $this->deletedAt;
     }

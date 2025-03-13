@@ -12,8 +12,8 @@
         <id name="id" column="id" type="auth.user.id"/>
 
         <field name="name" column="name" nullable="false" type="auth.user.name"/>
-        <field name="createdAt" column="created_at" nullable="false" type="auth.user.created_at"/>
-        <field name="updatedAt" column="updated_at" nullable="false" type="auth.user.updated_at"/>
-        <field name="deletedAt" column="deleted_at" nullable="true" type="auth.user.deleted_at"/>
+        <field name="createdAt" column="created_at" nullable="false" type="shared.created_at"/>
+        <field name="updatedAt" column="updated_at" nullable="false" type="shared.updated_at"/>
+        <field name="deletedAt" column="deleted_at" nullable="true" type="shared.deleted_at"/>
     </entity>
 </doctrine-mapping>

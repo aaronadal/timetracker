@@ -1,0 +1,3 @@
+GET {{ host }}/auth/users
+Accept: application/json
+Content-Type: application/json

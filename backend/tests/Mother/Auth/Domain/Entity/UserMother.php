@@ -3,22 +3,22 @@
 namespace Test\Mother\Auth\Domain\Entity;
 
 use Core\Auth\Domain\Entity\User;
-use Core\Auth\Domain\Entity\UserCreatedAt;
-use Core\Auth\Domain\Entity\UserDeletedAt;
 use Core\Auth\Domain\Entity\UserId;
 use Core\Auth\Domain\Entity\UserName;
-use Core\Auth\Domain\Entity\UserUpdatedAt;
+use Core\Shared\Domain\Entity\CreatedAt;
+use Core\Shared\Domain\Entity\DeletedAt;
+use Core\Shared\Domain\Entity\UpdatedAt;
 use Test\Mother\Nullable;
 
 final class UserMother
 {
-    /** @param UserDeletedAt|Nullable<UserDeletedAt>|Nullable<null>|null $deletedAt */
+    /** @param DeletedAt|Nullable<DeletedAt>|Nullable<null>|null $deletedAt */
     public static function create(
-        ?UserId $id = null,
-        ?UserName $name = null,
-        ?UserCreatedAt $createdAt = null,
-        ?UserUpdatedAt $updatedAt = null,
-        UserDeletedAt|Nullable|null $deletedAt = null,
+        ?UserId                 $id = null,
+        ?UserName               $name = null,
+        ?CreatedAt              $createdAt = null,
+        ?UpdatedAt              $updatedAt = null,
+        DeletedAt|Nullable|null $deletedAt = null,
     ): User {
         return User::hydrate(
             id: $id ?? UserIdMother::random(),
@@ -33,10 +33,10 @@ final class UserMother
     }
 
     public static function createNotDeleted(
-        ?UserId $id = null,
-        ?UserName $name = null,
-        ?UserCreatedAt $createdAt = null,
-        ?UserUpdatedAt $updatedAt = null,
+        ?UserId    $id = null,
+        ?UserName  $name = null,
+        ?CreatedAt $createdAt = null,
+        ?UpdatedAt $updatedAt = null,
     ): User {
         return self::create($id, $name, $createdAt, $updatedAt, Nullable::null());
     }

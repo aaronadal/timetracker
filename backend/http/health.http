@@ -1,0 +1,3 @@
+GET {{ host }}/
+Accept: application/json
+Content-Type: application/json
