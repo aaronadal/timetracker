@@ -10,6 +10,7 @@ abstract class ApiResponse extends JsonResponse
     public function __construct(?array $data = null, int $status = 200)
     {
         $data = [
+            'status' => $status,
             'success' => $status >= 200 && $status < 300,
             'timestamp' => time(),
             'payload' => $data,
