@@ -66,4 +66,27 @@ final class WorkEntryMother
             deletedAt: Nullable::null(),
         );
     }
+
+    /**
+     * @param WorkEntryEnd|Nullable<WorkEntryEnd>|Nullable<null>|null $end
+     */
+    public static function createNotDeleted(
+        ?WorkEntryId $id = null,
+        ?WorkEntryUserId $user = null,
+        ?WorkEntryStart $start = null,
+        WorkEntryEnd|Nullable|null $end = null,
+        ?CreatedAt $createdAt = null,
+        ?UpdatedAt $updatedAt = null,
+    ): WorkEntry
+    {
+        return self::create(
+            id: $id,
+            user: $user,
+            start: $start,
+            end: $end,
+            createdAt: $createdAt,
+            updatedAt: $updatedAt,
+            deletedAt: Nullable::null(),
+        );
+    }
 }
