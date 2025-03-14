@@ -12,11 +12,11 @@ final class CloseWorkEntryCommandMother
 {
     public static function create(
         ?WorkEntryUserId $user = null,
-        ?WorkEntryEnd $start = null,
+        ?WorkEntryEnd $end = null,
     ): CloseWorkEntryCommand {
         return new CloseWorkEntryCommand(
             user: $user ?? WorkEntryUserIdMother::random(),
-            end: $start ?? WorkEntryEndMother::random(),
+            end: $end ?? WorkEntryEndMother::random(),
         );
     }
 }
