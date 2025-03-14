@@ -17,4 +17,16 @@ final class TimestampMother
 
         return DateTimeMother::between('-365 days', "@$now")->getTimestamp();
     }
+
+    public static function pastBefore(int $reference): int
+    {
+        return DateTimeMother::between('-365 days', "@$reference")->getTimestamp();
+    }
+
+    public static function pastAfter(int $reference): int
+    {
+        $now = TimestampProvider::now();
+
+        return DateTimeMother::between("@$reference", "@$now")->getTimestamp();
+    }
 }

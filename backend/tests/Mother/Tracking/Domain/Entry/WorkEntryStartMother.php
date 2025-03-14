@@ -11,4 +11,22 @@ final class WorkEntryStartMother
     {
         return WorkEntryStart::fromValue(TimestampMother::lastYear());
     }
+
+    public static function before(WorkEntryStart|int $reference): WorkEntryStart
+    {
+        if($reference instanceof WorkEntryStart) {
+            $reference = $reference->value();
+        }
+
+        return WorkEntryStart::fromValue(TimestampMother::pastBefore($reference));
+    }
+
+    public static function after(WorkEntryStart|int $reference): WorkEntryStart
+    {
+        if($reference instanceof WorkEntryStart) {
+            $reference = $reference->value();
+        }
+
+        return WorkEntryStart::fromValue(TimestampMother::pastAfter($reference));
+    }
 }
