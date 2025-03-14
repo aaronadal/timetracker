@@ -25,6 +25,6 @@ final class SignUp
             new SignUpCommand($id, $name),
         );
 
-        return new CreatedApiResponse();
+        return new CreatedApiResponse($id);
     }
 }
