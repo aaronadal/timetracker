@@ -78,7 +78,7 @@ final class CloseWorkEntryHandlerTest extends UnitTest
             UserView::fromUser($user),
         );
         $this->repo->matching(
-            ['user' => $command->user->value(), 'close' => null, 'deletedAt' => null],
+            ['user' => $command->user->value(), 'end' => null, 'deletedAt' => null],
             [],
         );
         $this->repo->notSave();
@@ -105,7 +105,7 @@ final class CloseWorkEntryHandlerTest extends UnitTest
             UserView::fromUser($user),
         );
         $this->repo->matching(
-            ['user' => $command->user->value(), 'close' => null, 'deletedAt' => null],
+            ['user' => $command->user->value(), 'end' => null, 'deletedAt' => null],
             [$entry],
         );
         $this->repo->notSave();
@@ -130,7 +130,7 @@ final class CloseWorkEntryHandlerTest extends UnitTest
             UserView::fromUser($user),
         );
         $this->repo->matching(
-            ['user' => $command->user->value(), 'close' => null, 'deletedAt' => null],
+            ['user' => $command->user->value(), 'end' => null, 'deletedAt' => null],
             [$entry],
         );
         $this->repo->save($entry);

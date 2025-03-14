@@ -42,7 +42,7 @@ final class CloseWorkEntryHandler implements CommandHandlerInterface
 
     private function guardOpenWorkEntryExists(WorkEntryUserId $user): WorkEntry
     {
-        $result = $this->repo->matching(['user' => $user->value(), 'close' => null, 'deletedAt' => null]);
+        $result = $this->repo->matching(['user' => $user->value(), 'end' => null, 'deletedAt' => null]);
         if(count($result) === 0) {
             throw OpenWorkEntryNotFound::forUser($user);
         }
