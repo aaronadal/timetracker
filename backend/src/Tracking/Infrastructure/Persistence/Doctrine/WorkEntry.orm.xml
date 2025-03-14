@@ -13,7 +13,7 @@
 
         <field name="user" column="user" nullable="false" type="tracking.work_entry.user"/>
         <field name="start" column="start" nullable="false" type="tracking.work_entry.start"/>
-        <field name="end" column="end" nullable="false" type="tracking.work_entry.end"/>
+        <field name="end" column="end" nullable="true" type="tracking.work_entry.end"/>
         <field name="createdAt" column="created_at" nullable="false" type="shared.created_at"/>
         <field name="updatedAt" column="updated_at" nullable="false" type="shared.updated_at"/>
         <field name="deletedAt" column="deleted_at" nullable="true" type="shared.deleted_at"/>
