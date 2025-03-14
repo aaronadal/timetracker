@@ -1,0 +1,31 @@
+### End NULL
+POST {{ host }}/tracking/{{ userId }}/work-entries
+Accept: application/json
+Content-Type: application/json
+
+{
+    "start": 1741972109,
+    "end": null
+}
+
+
+### End Not NULL
+POST {{ host }}/tracking/{{ userId }}/work-entries
+Accept: application/json
+Content-Type: application/json
+
+{
+  "start": 1741972109,
+  "end": 1741973109
+}
+
+
+### End Before Start (400 error)
+POST {{ host }}/tracking/{{ userId }}/work-entries
+Accept: application/json
+Content-Type: application/json
+
+{
+  "start": 1741973109,
+  "end": 1741972109
+}

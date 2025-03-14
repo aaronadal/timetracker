@@ -18,7 +18,27 @@ final class PrimitiveExtractor
         /** @var mixed $value */
         $value = $this->data[$key] ?? null;
         if (!is_string($value) || $value === '') {
-            throw InvalidValue::forExpectedType("$value", 'non-empty-string');
+            throw InvalidValue::forExpectedType("$key $value", 'non-empty-string');
+        }
+
+        return $value;
+    }
+
+    /**
+     * @return ($nullable is true ? int|null : int)
+     */
+    public function positiveInteger(string $key, bool $nullable = false): ?int
+    {
+        /** @var mixed $value */
+        $value = $this->data[$key] ?? null;
+
+        if($value === null) {
+            if(!$nullable) {
+                throw InvalidValue::forExpectedType("$key $value", 'integer');
+            }
+        }
+        else if (!is_int($value) || $value < 1) {
+            throw InvalidValue::forExpectedType("$key $value", 'integer');
         }
 
         return $value;

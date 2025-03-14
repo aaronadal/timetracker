@@ -7,6 +7,15 @@ abstract class ValueObject
 {
     public abstract static function fromValue(mixed $value): static;
 
+    public static function fromValueOrNull(mixed $value): ?static
+    {
+        if($value === null) {
+            return null;
+        }
+
+        return static::fromValue($value);
+    }
+
     public final static function nullableEquals(?ValueObject $one, ?ValueObject $other): bool
     {
         if($one === null && $other === null) {
