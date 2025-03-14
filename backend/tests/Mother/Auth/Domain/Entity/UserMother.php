@@ -9,6 +9,9 @@ use Core\Shared\Domain\Entity\CreatedAt;
 use Core\Shared\Domain\Entity\DeletedAt;
 use Core\Shared\Domain\Entity\UpdatedAt;
 use Test\Mother\Nullable;
+use Test\Mother\Shared\Domain\Entity\CreatedAtMother;
+use Test\Mother\Shared\Domain\Entity\DeletedAtMother;
+use Test\Mother\Shared\Domain\Entity\UpdatedAtMother;
 
 final class UserMother
 {
@@ -23,11 +26,11 @@ final class UserMother
         return User::hydrate(
             id: $id ?? UserIdMother::random(),
             name: $name ?? UserNameMother::random(),
-            createdAt: $createdAt ?? UserCreatedAtMother::random(),
-            updatedAt: $updatedAt ?? UserUpdatedAtMother::random(),
+            createdAt: $createdAt ?? CreatedAtMother::random(),
+            updatedAt: $updatedAt ?? UpdatedAtMother::random(),
             deletedAt: Nullable::resolve(
                 $deletedAt,
-                static fn() => UserDeletedAtMother::random(),
+                static fn() => DeletedAtMother::random(),
             ),
         );
     }

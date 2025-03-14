@@ -1,11 +1,11 @@
 <?php
 
-namespace Test\Mother\Auth\Domain\Entity;
+namespace Test\Mother\Shared\Domain\Entity;
 
 use Core\Shared\Domain\Entity\DeletedAt;
 use Test\Mother\TimestampMother;
 
-final class UserDeletedAtMother
+final class DeletedAtMother
 {
     public static function random(): DeletedAt
     {
