@@ -138,5 +138,6 @@ final class CloseWorkEntryHandlerTest extends UnitTest
         ($this->handler)($command);
 
         self::assertEquals($command->end->value(), $entry->end()?->value());
+        self::assertEquals(TimestampProvider::now(), $entry->updatedAt()->value());
     }
 }

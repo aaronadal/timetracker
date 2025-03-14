@@ -107,5 +107,7 @@ final class DeleteWorkEntryHandlerTest extends UnitTest
         $this->repo->save($entry);
 
         ($this->handler)($command);
+
+        self::assertEquals(TimestampProvider::now(), $entry->deletedAt()?->value());
     }
 }

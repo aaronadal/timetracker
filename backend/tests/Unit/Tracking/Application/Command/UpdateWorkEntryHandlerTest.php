@@ -139,8 +139,6 @@ final class UpdateWorkEntryHandlerTest extends UnitTest
             user: $command->user,
             start: WorkEntryStartMother::different($start),
             end: WorkEntryEndMother::different($end),
-            createdAt: CreatedAt::fromValue($this->now),
-            updatedAt: UpdatedAt::fromValue($this->now),
         );
 
         $this->queryBus->ask(
@@ -154,5 +152,9 @@ final class UpdateWorkEntryHandlerTest extends UnitTest
         $this->repo->save($entry);
 
         ($this->handler)($command);
+
+        self::assertEquals($command->start->value(), $entry->start()->value());
+        self::assertEquals($command->end?->value(), $entry->end()?->value());
+        self::assertEquals(TimestampProvider::now(), $entry->updatedAt()->value());
     }
 }
