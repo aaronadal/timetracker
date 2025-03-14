@@ -27,7 +27,7 @@ final class SignUpHandler implements CommandHandlerInterface
 
         $this->repo->save($user);
 
-        // TODO: Publish domain events.
+        // TODO: Publish Domain Events.
     }
 
     private function guardUserNameAvailable(UserName $name): void

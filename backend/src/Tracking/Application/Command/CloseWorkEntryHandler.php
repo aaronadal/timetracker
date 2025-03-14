@@ -32,7 +32,7 @@ final class CloseWorkEntryHandler implements CommandHandlerInterface
 
         $this->repo->save($entry);
 
-        // TODO: Publish domain events.
+        // TODO: Publish Domain Events.
     }
 
     private function guardUserExists(WorkEntryUserId $user): void

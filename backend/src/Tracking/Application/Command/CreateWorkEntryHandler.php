@@ -7,10 +7,9 @@ use Core\Shared\Domain\Bus\QueryBusInterface;
 use Core\Tracking\Application\Service\UserExistsGuard;
 use Core\Tracking\Domain\Entity\WorkEntry;
 use Core\Tracking\Domain\Entity\WorkEntryUserId;
-use Core\Tracking\Domain\Exception\OpenWorkEntryAlreadyExists;
 use Core\Tracking\Domain\Persistence\WorkEntryRepositoryInterface;
 
-final class OpenWorkEntryHandler implements CommandHandlerInterface
+final class CreateWorkEntryHandler implements CommandHandlerInterface
 {
     private readonly UserExistsGuard $userExistsGuard;
 
@@ -22,15 +21,15 @@ final class OpenWorkEntryHandler implements CommandHandlerInterface
         $this->userExistsGuard = new UserExistsGuard($queryBus);
     }
 
-    public function __invoke(OpenWorkEntryCommand $command): void
+    public function __invoke(CreateWorkEntryCommand $command): void
     {
         $this->guardUserExists($command->user);
-        $this->guardNoOpenWorkEntryExists($command->user);
 
-        $entry = WorkEntry::open(
+        $entry = WorkEntry::create(
             id: $command->id,
             user: $command->user,
             start: $command->start,
+            end: $command->end,
         );
 
         $this->repo->save($entry);
@@ -41,13 +40,5 @@ final class OpenWorkEntryHandler implements CommandHandlerInterface
     private function guardUserExists(WorkEntryUserId $user): void
     {
         ($this->userExistsGuard)($user);
-    }
-
-    private function guardNoOpenWorkEntryExists(WorkEntryUserId $user): void
-    {
-        $result = $this->repo->matching(['user' => $user->value(), 'close' => null, 'deletedAt' => null]);
-        if(count($result) > 0) {
-            throw OpenWorkEntryAlreadyExists::forUser($user);
-        }
     }
 }

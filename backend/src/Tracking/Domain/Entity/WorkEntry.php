@@ -10,21 +10,38 @@ use Core\Shared\Domain\Exception\InvalidInterval;
 
 final class WorkEntry extends AggregateRoot
 {
+    public static function open(
+        WorkEntryId     $id,
+        WorkEntryUserId $user,
+        WorkEntryStart  $start,
+    ): self
+    {
+        return self::create(
+            $id,
+            $user,
+            $start,
+            null,
+        );
+    }
+
     public static function create(
         WorkEntryId     $id,
         WorkEntryUserId $user,
         WorkEntryStart  $start,
+        ?WorkEntryEnd   $end,
     ): self
     {
         $instance = new self(
             id: $id,
             user: $user,
             start: $start,
-            end: null,
+            end: $end,
             createdAt: CreatedAt::now(),
             updatedAt: UpdatedAt::now(),
             deletedAt: null,
         );
+
+        $instance->guardEndIsAfterStart();
 
         // TODO: Record WorkEntryCreated Domain Event.
 
@@ -113,16 +130,25 @@ final class WorkEntry extends AggregateRoot
 
     public function updated(): void
     {
-         $this->updatedAt = UpdatedAt::now();
+        $this->updatedAt = UpdatedAt::now();
+
+        // TODO: Record WorkEntryUpdated Domain Event.
+    }
+
+    public function deleted(): void
+    {
+        $this->deletedAt = DeletedAt::now();
+
+        // TODO: Record WorkEntryRemoved Domain Event.
     }
 
     private function guardEndIsAfterStart(): void
     {
-        if($this->end() === null) {
+        if ($this->end() === null) {
             return;
         }
 
-        if($this->start()->value() < $this->end()->value()) {
+        if ($this->start()->value() < $this->end()->value()) {
             return;
         }
 
