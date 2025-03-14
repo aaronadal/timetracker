@@ -1,0 +1,3 @@
+GET {{ host }}/tracking/{{ userId }}/work-entries/1f9ccbe2-93cc-4e20-82f2-81c07b513149
+Accept: application/json
+Content-Type: application/json
