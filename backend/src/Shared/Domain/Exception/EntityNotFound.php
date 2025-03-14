@@ -5,7 +5,7 @@ namespace Core\Shared\Domain\Exception;
 use Core\Shared\Domain\Entity\AggregateRoot;
 use Core\Shared\Domain\Entity\UuidValueObject;
 
-final class EntityNotFoundException extends DomainException
+final class EntityNotFound extends DomainException
 {
     /** @param class-string<AggregateRoot> $class */
     public static function forClassAndId(string $class, UuidValueObject $id, ?\Throwable $previous = null): static

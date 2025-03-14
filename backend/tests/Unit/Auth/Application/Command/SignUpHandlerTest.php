@@ -5,7 +5,7 @@ namespace Test\Unit\Auth\Application\Command;
 use Core\Auth\Application\Command\SignUpHandler;
 use Core\Shared\Domain\Entity\CreatedAt;
 use Core\Shared\Domain\Entity\UpdatedAt;
-use Core\Shared\Domain\Exception\InvalidValueException;
+use Core\Shared\Domain\Exception\InvalidValue;
 use Core\Shared\Domain\TimestampProvider;
 use Test\Mocker\Auth\Domain\Persistence\UserRepositoryMocker;
 use Test\Mother\Auth\Application\Command\SignUpCommandMother;
@@ -43,7 +43,7 @@ final class SignUpHandlerTest extends UnitTest
         $this->repo->matching(['name' => $command->name->value()], [$user]);
         $this->repo->notSave();
 
-        $this->expectExceptionObject(InvalidValueException::forDuplicatedValue($command->name->value()));
+        $this->expectExceptionObject(InvalidValue::forDuplicatedValue($command->name->value()));
         ($this->handler)($command);
     }
 

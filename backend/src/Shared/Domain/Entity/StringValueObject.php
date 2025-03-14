@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain\Entity;
 
-use Core\Shared\Domain\Exception\InvalidValueException;
+use Core\Shared\Domain\Exception\InvalidValue;
 
 /** @extends ValueObject<string> */
 abstract class StringValueObject extends ValueObject
@@ -20,7 +20,7 @@ abstract class StringValueObject extends ValueObject
     protected function ensureIsValid(mixed $value): mixed
     {
         if(!static::canBeEmpty() && $value === '') {
-            throw InvalidValueException::forEmptyValue();
+            throw InvalidValue::forEmptyValue();
         }
 
         return $value;

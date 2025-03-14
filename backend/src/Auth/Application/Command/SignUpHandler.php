@@ -6,7 +6,7 @@ use Core\Auth\Domain\Entity\User;
 use Core\Auth\Domain\Entity\UserName;
 use Core\Auth\Domain\Persistence\UserRepositoryInterface;
 use Core\Shared\Domain\Bus\CommandHandlerInterface;
-use Core\Shared\Domain\Exception\InvalidValueException;
+use Core\Shared\Domain\Exception\InvalidValue;
 
 final class SignUpHandler implements CommandHandlerInterface
 {
@@ -37,7 +37,7 @@ final class SignUpHandler implements CommandHandlerInterface
         ]);
 
         if (count($result) > 0) {
-            throw InvalidValueException::forDuplicatedValue($name->value());
+            throw InvalidValue::forDuplicatedValue($name->value());
         }
     }
 }

@@ -6,7 +6,7 @@ use Core\Auth\Application\Query\UserByIdHandler;
 use Core\Auth\Application\View\UserView;
 use Core\Auth\Domain\Entity\User;
 use Core\Auth\Domain\Entity\UserId;
-use Core\Shared\Domain\Exception\EntityNotFoundException;
+use Core\Shared\Domain\Exception\EntityNotFound;
 use Test\Mocker\Auth\Domain\Persistence\UserRepositoryMocker;
 use Test\Mother\Auth\Application\Query\UserByIdQueryMother;
 use Test\Mother\Auth\Domain\Entity\UserMother;
@@ -32,7 +32,7 @@ final class UserByIdHandlerTest extends UnitTest
 
         $this->repo->matching(['id' => $query->id, 'deletedAt' => null], []);
 
-        self::expectExceptionObject(EntityNotFoundException::forClassAndId(User::class, $id));
+        self::expectExceptionObject(EntityNotFound::forClassAndId(User::class, $id));
         ($this->handler)($query);
     }
 

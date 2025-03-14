@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain\Entity;
 
-use Core\Shared\Domain\Exception\InvalidValueException;
+use Core\Shared\Domain\Exception\InvalidValue;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Uid\UuidV4;
 
@@ -22,7 +22,7 @@ abstract class UuidValueObject extends ValueObject
     protected function ensureIsValid(mixed $value): mixed
     {
         if(!UuidV4::isValid($value)) {
-            throw InvalidValueException::forExpectedFormat($value, 'UUID v4');
+            throw InvalidValue::forExpectedFormat($value, 'UUID v4');
         }
 
         return $value;

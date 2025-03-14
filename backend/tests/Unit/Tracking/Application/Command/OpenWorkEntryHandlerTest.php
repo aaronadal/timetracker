@@ -7,7 +7,7 @@ use Core\Auth\Domain\Entity\User;
 use Core\Auth\Domain\Entity\UserId;
 use Core\Shared\Domain\Entity\CreatedAt;
 use Core\Shared\Domain\Entity\UpdatedAt;
-use Core\Shared\Domain\Exception\EntityNotFoundException;
+use Core\Shared\Domain\Exception\EntityNotFound;
 use Core\Shared\Domain\TimestampProvider;
 use Core\Tracking\Application\Command\OpenWorkEntryHandler;
 use Core\Tracking\Domain\Exception\OpenWorkEntryAlreadyExists;
@@ -49,9 +49,9 @@ final class OpenWorkEntryHandlerTest extends UnitTest
     {
         $command = OpenWorkEntryCommandMother::create();
 
-        $exception = EntityNotFoundException::forClassAndId(
+        $exception = EntityNotFound::forClassAndId(
             User::class,
-            UserId::fromValue($command->id->value()),
+            UserId::fromValue($command->user->value()),
         );
 
         $this->queryBus->askAndFail(

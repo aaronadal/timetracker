@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain;
 
-use Core\Shared\Domain\Exception\InvalidValueException;
+use Core\Shared\Domain\Exception\InvalidValue;
 
 final class PrimitiveExtractor
 {
@@ -18,7 +18,7 @@ final class PrimitiveExtractor
         /** @var mixed $value */
         $value = $this->data[$key] ?? null;
         if (!is_string($value) || $value === '') {
-            throw InvalidValueException::forExpectedType("$value", 'non-empty-string');
+            throw InvalidValue::forExpectedType("$value", 'non-empty-string');
         }
 
         return $value;

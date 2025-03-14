@@ -8,7 +8,7 @@ use Core\Auth\Domain\Entity\UserId;
 use Core\Auth\Domain\Persistence\UserRepositoryInterface;
 use Core\Shared\Application\View\ViewInterface;
 use Core\Shared\Domain\Bus\QueryHandlerInterface;
-use Core\Shared\Domain\Exception\EntityNotFoundException;
+use Core\Shared\Domain\Exception\EntityNotFound;
 
 final class UserByIdHandler implements QueryHandlerInterface
 {
@@ -22,7 +22,7 @@ final class UserByIdHandler implements QueryHandlerInterface
         $id = UserId::fromValue($query->id);
         $users = $this->repo->matching(['id' => $id->value(), 'deletedAt' => null]);
         if(count($users) === 0) {
-            throw EntityNotFoundException::forClassAndId(User::class, $id);
+            throw EntityNotFound::forClassAndId(User::class, $id);
         }
 
         return UserView::fromUser($users[0]);

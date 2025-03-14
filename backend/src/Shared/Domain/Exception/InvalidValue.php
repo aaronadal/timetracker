@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain\Exception;
 
-final class InvalidValueException extends DomainException
+final class InvalidValue extends DomainException
 {
     protected static function statusCode(): int
     {
