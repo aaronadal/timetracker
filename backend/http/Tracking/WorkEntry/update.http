@@ -1,0 +1,31 @@
+### End NULL
+PUT {{ host }}/tracking/{{ userId }}/work-entries/cc26161c-8467-4305-9687-3c7e88678890
+Accept: application/json
+Content-Type: application/json
+
+{
+    "start": 1741982775,
+    "end": null
+}
+
+
+### End Not NULL
+PUT {{ host }}/tracking/{{ userId }}/work-entries/cc26161c-8467-4305-9687-3c7e88678890
+Accept: application/json
+Content-Type: application/json
+
+{
+  "start": 1741982775,
+  "end": 1741979775
+}
+
+
+### End Before Start (400 error)
+PUT {{ host }}/tracking/{{ userId }}/work-entries/cc26161c-8467-4305-9687-3c7e88678890
+Accept: application/json
+Content-Type: application/json
+
+{
+  "start": 1741979775,
+  "end": 1741982775
+}
