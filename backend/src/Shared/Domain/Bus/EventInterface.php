@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain\Bus;
 
-interface EventInterface
+interface EventInterface extends MessageInterface
 {
 
 }

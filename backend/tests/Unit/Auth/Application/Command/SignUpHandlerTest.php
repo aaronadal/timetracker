@@ -15,11 +15,15 @@ use Test\Unit\UnitTest;
 
 final class SignUpHandlerTest extends UnitTest
 {
+    private int $now;
     private UserRepositoryMocker $repo;
     private SignUpHandler $handler;
 
     protected function setUp(): void
     {
+        $this->now = TimestampMother::lastFewMinutes();
+        TimestampProvider::mock($this->now);
+
         $this->repo = new UserRepositoryMocker();
         $this->handler = new SignUpHandler(
             repo: $this->repo->mock(),
@@ -45,15 +49,12 @@ final class SignUpHandlerTest extends UnitTest
 
     public function testSignsUpSuccessfully(): void
     {
-        $now = TimestampMother::lastYear();
-        TimestampProvider::mock($now);
-
         $command = SignUpCommandMother::create();
         $user = UserMother::createNotDeleted(
             $command->id,
             $command->name,
-            CreatedAt::fromValue($now),
-            UpdatedAt::fromValue($now),
+            CreatedAt::fromValue($this->now),
+            UpdatedAt::fromValue($this->now),
         );
 
         $this->repo->matching(['name' => $command->name->value()], []);

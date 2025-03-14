@@ -2,7 +2,7 @@
 
 namespace Core\Shared\Domain\Bus;
 
-interface CommandInterface
+interface CommandInterface extends MessageInterface
 {
 
 }

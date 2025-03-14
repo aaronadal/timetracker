@@ -20,6 +20,10 @@ trait SimilarToFactoryTrait
         $factory->register($aggregateRootComparator);
         $factory->register(new CompositeArraySimilarToComparator($aggregateRootComparator));
 
+        $busMessageComparator = new BusMessageSimilarToComparator($factory);
+        $factory->register($busMessageComparator);
+        $factory->register(new CompositeArraySimilarToComparator($busMessageComparator));
+
         return $factory;
     }
 }
