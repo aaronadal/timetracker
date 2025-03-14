@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User;
+namespace App\Auth;
 
 use Core\Auth\Application\Command\SignUpCommand;
 use Core\Auth\Domain\Entity\UserId;

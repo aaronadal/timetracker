@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User;
+namespace App\Auth;
 
 use Core\Auth\Application\Query\AllUsersQuery;
 use Core\Shared\Domain\Bus\QueryBusInterface;
