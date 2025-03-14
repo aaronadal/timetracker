@@ -1,0 +1,7 @@
+POST {{ host }}/tracking/{{ userId }}/work-entries/open
+Accept: application/json
+Content-Type: application/json
+
+{
+    "start": 1741972109
+}

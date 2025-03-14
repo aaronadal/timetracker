@@ -76,7 +76,7 @@ final class OpenWorkEntryHandlerTest extends UnitTest
             UserView::fromUser($user),
         );
         $this->repo->matching(
-            ['user' => $command->user->value(), 'close' => null, 'deletedAt' => null],
+            ['user' => $command->user->value(), 'end' => null, 'deletedAt' => null],
             [WorkEntryMother::createOpen(user: $command->user)],
         );
         $this->repo->notSave();
@@ -102,7 +102,7 @@ final class OpenWorkEntryHandlerTest extends UnitTest
             UserView::fromUser($user),
         );
         $this->repo->matching(
-            ['user' => $command->user->value(), 'close' => null, 'deletedAt' => null],
+            ['user' => $command->user->value(), 'end' => null, 'deletedAt' => null],
             [],
         );
         $this->repo->save($entry);
