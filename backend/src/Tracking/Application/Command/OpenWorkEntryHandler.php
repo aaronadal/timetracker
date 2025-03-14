@@ -2,9 +2,9 @@
 
 namespace Core\Tracking\Application\Command;
 
-use Core\Auth\Application\Query\UserByIdQuery;
 use Core\Shared\Domain\Bus\CommandHandlerInterface;
 use Core\Shared\Domain\Bus\QueryBusInterface;
+use Core\Tracking\Application\Service\UserExistsGuard;
 use Core\Tracking\Domain\Entity\WorkEntry;
 use Core\Tracking\Domain\Entity\WorkEntryUserId;
 use Core\Tracking\Domain\Exception\OpenWorkEntryAlreadyExists;
@@ -12,11 +12,14 @@ use Core\Tracking\Domain\Persistence\WorkEntryRepositoryInterface;
 
 final class OpenWorkEntryHandler implements CommandHandlerInterface
 {
+    private readonly UserExistsGuard $userExistsGuard;
+
     public function __construct(
         private readonly WorkEntryRepositoryInterface $repo,
-        private readonly QueryBusInterface $queryBus,
+        QueryBusInterface $queryBus,
     )
     {
+        $this->userExistsGuard = new UserExistsGuard($queryBus);
     }
 
     public function __invoke(OpenWorkEntryCommand $command): void
@@ -37,7 +40,7 @@ final class OpenWorkEntryHandler implements CommandHandlerInterface
 
     private function guardUserExists(WorkEntryUserId $user): void
     {
-        $this->queryBus->ask(new UserByIdQuery($user->value()));
+        ($this->userExistsGuard)($user);
     }
 
     private function guardNoOpenWorkEntryExists(WorkEntryUserId $user): void
