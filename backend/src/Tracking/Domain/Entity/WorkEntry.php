@@ -6,6 +6,7 @@ use Core\Shared\Domain\Entity\AggregateRoot;
 use Core\Shared\Domain\Entity\CreatedAt;
 use Core\Shared\Domain\Entity\DeletedAt;
 use Core\Shared\Domain\Entity\UpdatedAt;
+use Core\Shared\Domain\Exception\InvalidInterval;
 
 final class WorkEntry extends AggregateRoot
 {
@@ -15,7 +16,7 @@ final class WorkEntry extends AggregateRoot
         WorkEntryStart  $start,
     ): self
     {
-        return new self(
+        $instance = new self(
             id: $id,
             user: $user,
             start: $start,
@@ -24,6 +25,10 @@ final class WorkEntry extends AggregateRoot
             updatedAt: UpdatedAt::now(),
             deletedAt: null,
         );
+
+        // TODO: Record WorkEntryCreated Domain Event.
+
+        return $instance;
     }
 
     public static function hydrate(
@@ -79,6 +84,18 @@ final class WorkEntry extends AggregateRoot
         return $this->end;
     }
 
+    public function updateEnd(?WorkEntryEnd $end): void
+    {
+        if(WorkEntryEnd::nullableEquals($this->end(), $end)) {
+            return;
+        }
+
+        $this->end = $end;
+        $this->guardEndIsAfterStart();
+
+        // TODO: Record WorkEntryCreated Domain Event.
+    }
+
     public function createdAt(): CreatedAt
     {
         return $this->createdAt;
@@ -92,5 +109,23 @@ final class WorkEntry extends AggregateRoot
     public function deletedAt(): ?DeletedAt
     {
         return $this->deletedAt;
+    }
+
+    public function updated(): void
+    {
+         $this->updatedAt = UpdatedAt::now();
+    }
+
+    private function guardEndIsAfterStart(): void
+    {
+        if($this->end() === null) {
+            return;
+        }
+
+        if($this->start()->value() < $this->end()->value()) {
+            return;
+        }
+
+        throw InvalidInterval::forEndBeforeStart($this->start()->value(), $this->end()->value());
     }
 }

@@ -7,6 +7,19 @@ abstract class ValueObject
 {
     public abstract static function fromValue(mixed $value): static;
 
+    public final static function nullableEquals(?ValueObject $one, ?ValueObject $other): bool
+    {
+        if($one === null && $other === null) {
+            return true;
+        }
+
+        if($one === null || $other === null) {
+            return false;
+        }
+
+        return $one->equals($other);
+    }
+
     /** @var T */
     private readonly mixed $value;
 
