@@ -9,6 +9,7 @@ Once Docker is installed and running, you just have to execute the following com
 1. Build the custom docker images with `make docker-build`.
 2. Deploy the Docker Compose containers with `make start`.
 3. Install all the required dependencies with `make install`.
+4. Run the database migrations with `make migrations-migrate`.
 
 That's all. Now you can check the api is ready at [localhost:8000](http://localhost:8000)
 and launch the app at [localhost:3000](http://localhost:3000).

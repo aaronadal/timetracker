@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Core\Tracking\Domain\Entity\WorkEntry" table="tracking__work_entries">
+        <indexes>
+            <index name="idx_user" columns="user"/>
+        </indexes>
+
+        <id name="id" column="id" type="tracking.work_entry.id"/>
+
+        <field name="user" column="user" nullable="false" type="tracking.work_entry.user"/>
+        <field name="start" column="start" nullable="false" type="tracking.work_entry.start"/>
+        <field name="end" column="end" nullable="false" type="tracking.work_entry.end"/>
+        <field name="createdAt" column="created_at" nullable="false" type="shared.created_at"/>
+        <field name="updatedAt" column="updated_at" nullable="false" type="shared.updated_at"/>
+        <field name="deletedAt" column="deleted_at" nullable="true" type="shared.deleted_at"/>
+    </entity>
+</doctrine-mapping>

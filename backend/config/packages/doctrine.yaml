@@ -24,6 +24,12 @@ doctrine:
                 dir: "%kernel.project_dir%/src/Auth/Infrastructure/Persistence/Doctrine"
                 prefix: 'Core\Auth\Domain\Entity'
                 is_bundle: false
+            tracking__work_entries:
+                mapping: true
+                type: xml
+                dir: "%kernel.project_dir%/src/Tracking/Infrastructure/Persistence/Doctrine"
+                prefix: 'Core\Tracking\Domain\Entity'
+                is_bundle: false
         controller_resolver:
             auto_mapping: false
 
