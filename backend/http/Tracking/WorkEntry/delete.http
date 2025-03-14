@@ -1,0 +1,3 @@
+DELETE {{ host }}/tracking/{{ userId }}/work-entries/cc26161c-8467-4305-9687-3c7e88678890
+Accept: application/json
+Content-Type: application/json
