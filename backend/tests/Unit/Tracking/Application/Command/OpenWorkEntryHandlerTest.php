@@ -85,7 +85,7 @@ final class OpenWorkEntryHandlerTest extends UnitTest
         ($this->handler)($command);
     }
 
-    public function testSignsUpSuccessfully(): void
+    public function testOpensWorkEntrySuccessfully(): void
     {
         $command = OpenWorkEntryCommandMother::create();
         $user = UserMother::createNotDeleted(UserId::fromValue($command->user->value()));

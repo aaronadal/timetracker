@@ -114,7 +114,7 @@ final class CloseWorkEntryHandlerTest extends UnitTest
         ($this->handler)($command);
     }
 
-    public function testSignsUpSuccessfully(): void
+    public function testClosesWorkEntrySuccessfully(): void
     {
         $command = CloseWorkEntryCommandMother::create();
         $user = UserMother::createNotDeleted(UserId::fromValue($command->user->value()));
