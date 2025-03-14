@@ -4,13 +4,14 @@ namespace Core\Tracking\Application\Command;
 
 use Core\Shared\Domain\Bus\CommandHandlerInterface;
 use Core\Shared\Domain\Bus\QueryBusInterface;
+use Core\Shared\Domain\Exception\EntityNotFound;
 use Core\Tracking\Application\Service\UserExistsGuard;
 use Core\Tracking\Domain\Entity\WorkEntry;
+use Core\Tracking\Domain\Entity\WorkEntryId;
 use Core\Tracking\Domain\Entity\WorkEntryUserId;
-use Core\Tracking\Domain\Exception\OpenWorkEntryNotFound;
 use Core\Tracking\Domain\Persistence\WorkEntryRepositoryInterface;
 
-final class CloseWorkEntryHandler implements CommandHandlerInterface
+final class UpdateWorkEntryHandler implements CommandHandlerInterface
 {
     private readonly UserExistsGuard $userExistsGuard;
 
@@ -22,12 +23,12 @@ final class CloseWorkEntryHandler implements CommandHandlerInterface
         $this->userExistsGuard = new UserExistsGuard($queryBus);
     }
 
-    public function __invoke(CloseWorkEntryCommand $command): void
+    public function __invoke(UpdateWorkEntryCommand $command): void
     {
         $this->guardUserExists($command->user);
-        $entry = $this->guardOpenWorkEntryExists($command->user);
+        $entry = $this->guardWorkEntryExists($command->id, $command->user);
 
-        $entry->updateInterval($entry->start(), $command->end);
+        $entry->updateInterval($command->start, $command->end);
         $entry->updated();
 
         $this->repo->save($entry);
@@ -40,11 +41,11 @@ final class CloseWorkEntryHandler implements CommandHandlerInterface
         ($this->userExistsGuard)($user);
     }
 
-    private function guardOpenWorkEntryExists(WorkEntryUserId $user): WorkEntry
+    private function guardWorkEntryExists(WorkEntryId $id, WorkEntryUserId $user): WorkEntry
     {
-        $result = $this->repo->matching(['user' => $user->value(), 'close' => null, 'deletedAt' => null]);
+        $result = $this->repo->matching(['id' => $id->value(), 'user' => $user->value(), 'deletedAt' => null]);
         if(count($result) === 0) {
-            throw OpenWorkEntryNotFound::forUser($user);
+            throw EntityNotFound::forClassAndId(WorkEntry::class, $id);
         }
 
         return $result[0];

@@ -72,7 +72,7 @@ final class WorkEntry extends AggregateRoot
     private function __construct(
         private readonly WorkEntryId     $id,
         private readonly WorkEntryUserId $user,
-        private readonly WorkEntryStart  $start,
+        private WorkEntryStart           $start,
         private ?WorkEntryEnd            $end,
         private readonly CreatedAt       $createdAt,
         private UpdatedAt                $updatedAt,
@@ -96,21 +96,39 @@ final class WorkEntry extends AggregateRoot
         return $this->start;
     }
 
+    private function updateStart(WorkEntryStart $start): void
+    {
+        if ($this->start()->equals($start)) {
+            return;
+        }
+
+        $this->start = $start;
+
+        // TODO: Record WorkEntryStartChanged Domain Event.
+    }
+
     public function end(): ?WorkEntryEnd
     {
         return $this->end;
     }
 
-    public function updateEnd(?WorkEntryEnd $end): void
+    private function updateEnd(?WorkEntryEnd $end): void
     {
-        if(WorkEntryEnd::nullableEquals($this->end(), $end)) {
+        if (WorkEntryEnd::nullableEquals($this->end(), $end)) {
             return;
         }
 
         $this->end = $end;
         $this->guardEndIsAfterStart();
 
-        // TODO: Record WorkEntryCreated Domain Event.
+        // TODO: Record WorkEntryEndChanged Domain Event.
+    }
+
+    public function updateInterval(WorkEntryStart $start, ?WorkEntryEnd $end): void
+    {
+        $this->updateStart($start);
+        $this->updateEnd($end);
+        $this->guardEndIsAfterStart();
     }
 
     public function createdAt(): CreatedAt
