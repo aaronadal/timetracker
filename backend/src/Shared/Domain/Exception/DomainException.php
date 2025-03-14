@@ -10,4 +10,9 @@ abstract class DomainException extends \Exception
     {
         parent::__construct($message, static::statusCode(), $previous);
     }
+
+    public function getStatusCode(): int
+    {
+        return static::statusCode();
+    }
 }

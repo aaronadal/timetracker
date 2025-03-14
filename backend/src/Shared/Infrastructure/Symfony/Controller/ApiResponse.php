@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 abstract class ApiResponse extends JsonResponse
 {
-    /** @param array<mixed>|null $data */
+    /** @param array<array-key, mixed>|null $data */
     public function __construct(?array $data = null, int $status = 200)
     {
         $data = [
