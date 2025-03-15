@@ -8,7 +8,7 @@ install: composer-install
 docker-build:
 	docker build -t timetracker-server -f ./docker/nginx.Dockerfile .
 	docker build -t timetracker-api -f ./docker/php.Dockerfile .
-	docker build -t timetracker-app -f ./docker/php.Dockerfile .
+	docker build -t timetracker-app -f ./docker/node.Dockerfile .
 
 docker-start:
 	docker-compose up -d
@@ -51,4 +51,12 @@ test-backend-unit:
 
 test-backend: test-backend-static test-backend-unit
 
-test: test-backend
+test-frontend-static:
+	docker exec -it timetracker.app yarn run type-check
+
+test-frontend-unit:
+	docker exec -it timetracker.app yarn run test:unit
+
+test-frontend: test-frontend-static test-frontend-unit
+
+test: test-backend test-frontend
