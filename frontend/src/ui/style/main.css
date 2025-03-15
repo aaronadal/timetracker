@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  body,
+  #app {
+    @apply h-dvh overflow-hidden;
+  }
+
+  #app {
+    @apply bg-gray-100 p-6 grid grid-cols-1 gap-3;
+  }
+}
