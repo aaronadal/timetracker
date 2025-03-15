@@ -3,6 +3,45 @@
 
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --logo-900: hsla(224, 45%, 22%, 1);
+
+  --font-primary: hsla(224, 45%, 22%, 1);
+
+  --overlay-overlay: hsla(224, 45%, 38%, 0.5);
+
+  --neutral-50: hsla(210, 40%, 98%, 1);
+
+  --border-input-default: hsla(213, 27%, 84%, 1);
+}
+
+@utility text-primary {
+  color: var(--font-primary);
+}
+
+@utility icon {
+  @apply inline-block w-6 h-6;
+}
+
+@utility base-button {
+  @apply inline-block font-semibold text-lg text-center;
+  @apply cursor-pointer max-h-12 rounded-2xl gap-x-2 py-2 px-5;
+
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@utility button-primary {
+  @apply base-button;
+
+  background: var(--logo-900);
+  color: white;
+}
+
+@utility button-tertiary {
+  @apply base-button text-primary;
+
+  background: transparent;
 }
 
 @layer base {
@@ -13,5 +52,79 @@
 
   #app {
     @apply bg-gray-100 p-6 grid grid-cols-1 gap-3;
+  }
+
+  .icon {
+    @apply icon;
+  }
+}
+
+@layer components {
+  .card {
+    @apply flex flex-col rounded-2xl;
+
+    background: white;
+    box-shadow: 0 1px 2px 0 hsla(243, 58%, 38%, 0.03),
+    0 4px 4px 0 hsla(243, 100%, 69%, 0.03),
+    0 10px 6px 0 hsla(243, 100%, 69%, 0.02),
+    0 -2px 5px 0 hsla(243, 58%, 38%, 0.02),
+    0 -9px 9px 0 hsla(243, 100%, 69%, 0.01),
+    0 -20px 12px 0 hsla(243, 100%, 69%, 0.01);
+
+    > .header {
+      @apply gap-4 rounded-tl-2xl rounded-tr-2xl pt-4 pr-4 pb-2 pl-6;
+      @apply flex justify-between items-center gap-2;
+
+      @apply font-bold text-2xl align-middle text-primary;
+
+      line-height: 125%;
+      letter-spacing: 0;
+    }
+
+    > .content {
+      @apply gap-y-3 py-2 px-6;
+    }
+
+    > .footer {
+      @apply gap-3 rounded-bl-2xl rounded-br-2xl pt-3 pb-5 px-6;
+      @apply flex justify-between items-center gap-2;
+
+      line-height: 125%;
+      letter-spacing: 0;
+    }
+  }
+
+  .modal {
+    @apply absolute top-0 bottom-0 left-0 right-0 w-full h-full flex items-center;
+
+    > .backdrop {
+      @apply absolute w-full h-full;
+      background: var(--overlay-overlay);
+    }
+
+    > .card {
+      @apply relative;
+
+      width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  .input-text {
+    @apply flex flex-col gap-2;
+
+    > label {
+      @apply block h-4 gap-2 align-middle text-sm text-primary;
+
+      line-height: 125%;
+      letter-spacing: 0;
+    }
+
+    > input {
+      @apply block h-8 rounded-xl px-3 gap-2;
+
+      background: var(--neutral-50);
+      border: 1px solid var(--border-input-default);
+    }
   }
 }
