@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  type: 'primary'|'tertiary';
+  type: 'primary'|'tertiary'|'success';
 }
 
 defineProps<Props>();

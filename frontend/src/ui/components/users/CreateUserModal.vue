@@ -29,8 +29,8 @@ async function onCreate(): Promise<void> {
 
       <template #footer>
         <div class="flex w-full gap-3">
-          <Button class="basis-1/2" type="tertiary" @click="emit('dismiss')">Cancelar</Button>
-          <Button class="basis-1/2" type="primary" @click="onCreate">Crear</Button>
+          <Button class="basis-1/2 text-lg" type="tertiary" @click="emit('dismiss')">Cancelar</Button>
+          <Button class="basis-1/2 text-lg" type="primary" @click="onCreate">Crear</Button>
         </div>
       </template>
     </Modal>

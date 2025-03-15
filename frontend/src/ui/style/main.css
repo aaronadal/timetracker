@@ -7,16 +7,23 @@
   --logo-900: hsla(224, 45%, 22%, 1);
 
   --font-primary: hsla(224, 45%, 22%, 1);
+  --font-tertiary: hsla(215, 20%, 65%, 1);
 
   --overlay-overlay: hsla(224, 45%, 38%, 0.5);
 
   --neutral-50: hsla(210, 40%, 98%, 1);
 
   --border-input-default: hsla(213, 27%, 84%, 1);
+
+  --bg-success-default: hsla(142, 71%, 45%, 1);
 }
 
 @utility text-primary {
   color: var(--font-primary);
+}
+
+@utility text-tertiary {
+  color: var(--font-tertiary);
 }
 
 @utility icon {
@@ -24,7 +31,7 @@
 }
 
 @utility base-button {
-  @apply inline-block font-semibold text-lg text-center;
+  @apply inline-block font-semibold text-center;
   @apply cursor-pointer max-h-12 rounded-2xl gap-x-2 py-2 px-5;
 
   line-height: 125%;
@@ -35,6 +42,13 @@
   @apply base-button;
 
   background: var(--logo-900);
+  color: white;
+}
+
+@utility button-success {
+  @apply base-button;
+
+  background: var(--bg-success-default);
   color: white;
 }
 
@@ -125,6 +139,45 @@
 
       background: var(--neutral-50);
       border: 1px solid var(--border-input-default);
+    }
+  }
+
+  .avatar {
+    @apply relative flex justify-center items-center;
+
+    > .background {
+      @apply absolute;
+    }
+
+    > .letters {
+      @apply font-semibold text-center align-middle;
+
+      color: white;
+      opacity: 0.99999;
+      line-height: 125%;
+      letter-spacing: 0;
+    }
+  }
+
+  .user-selector {
+    @apply flex gap-2 items-center;
+  }
+
+  .user-bar {
+    @apply flex h-min justify-end items-center gap-2;
+
+    > .time {
+      @apply flex gap-1 align-middle text-tertiary;
+      line-height: 125%;
+      letter-spacing: 0;
+
+      > .done {
+        @apply text-primary;
+      }
+    }
+
+    > .action {
+      @apply w-32 text-sm;
     }
   }
 }
