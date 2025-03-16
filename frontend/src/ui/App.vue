@@ -11,7 +11,7 @@ const allUsersQuery = container.get('Auth.User.Query.All')
 const users = ref<User[]>([]);
 const ready = ref(false);
 const currentUser = ref<User | null>(null);
-watch(users, () => setCurrentUser(users.value[0] || null));
+watch(users, () => setCurrentUser(users.value[0] || null), {deep: true});
 
 function setCurrentUser(user: User | null): void {
   currentUser.value = user;
@@ -42,6 +42,6 @@ provide(SET_CURRENT_USER, setCurrentUser);
 <template>
   <template v-if="ready">
     <NoUsersView v-if="users.length === 0" />
-    <UserEntriesView v-else :users="users" :current-user="currentUser" :entries="userEntries" />
+    <UserEntriesView v-else-if="currentUser" :users="users" :current-user="currentUser" :entries="userEntries" />
   </template>
 </template>

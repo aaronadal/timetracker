@@ -4,6 +4,7 @@ import type {WorkEntry} from "@/core/tracking/domain/entity/work-entry.root.ts";
 import Card from "@/ui/components/shared/Card.vue";
 import GridTable from "@/ui/components/shared/GridTable.vue";
 import CloseIcon from "@/ui/components/shared/icons/CloseIcon.vue";
+import EmptyEntryList from "@/ui/components/work-entries/EmptyEntryList.vue";
 
 const emit = defineEmits<{
   (evt: 'delete', entry: WorkEntry): void;
@@ -35,24 +36,29 @@ const formatTime = (timestamp: number | null) => {
 
 <template>
   <Card>
-    <GridTable :cols="5">
-      <template #headers>
-        <div class="rounded-tl-lg">Día</div>
-        <div>Tipo de fichaje</div>
-        <div>Hora entrada</div>
-        <div>Hora salida</div>
-        <div class="rounded-tr-lg"></div>
-      </template>
+    <div class="h-full grid grid-cols-1" :class="entries.length === 0 ? 'grid-rows-[auto_1fr]' : 'grid-rows-[auto]'">
+      <GridTable :cols="5">
+        <template #headers>
+          <div class="rounded-tl-lg">Día</div>
+          <div>Tipo de fichaje</div>
+          <div>Hora entrada</div>
+          <div>Hora salida</div>
+          <div class="rounded-tr-lg"></div>
+        </template>
 
-      <template v-for="entry in entries" :key="entry.id">
-        <div>{{ getDayName(entry.start) }}</div>
-        <div>Normal</div>
-        <div>{{ formatTime(entry.start) }}</div>
-        <div>{{ formatTime(entry.end) }}</div>
-        <div>
-          <CloseIcon class="cursor-pointer" @click="emit('delete', entry)" />
-        </div>
-      </template>
-    </GridTable>
+        <template v-if="entries.length > 0">
+          <template v-for="entry in entries" :key="entry.id">
+            <div>{{ getDayName(entry.start) }}</div>
+            <div>Normal</div>
+            <div>{{ formatTime(entry.start) }}</div>
+            <div>{{ formatTime(entry.end) }}</div>
+            <div>
+              <CloseIcon class="cursor-pointer" @click="emit('delete', entry)" />
+            </div>
+          </template>
+        </template>
+      </GridTable>
+      <EmptyEntryList v-if="entries.length === 0" class="self-center" />
+    </div>
   </Card>
 </template>

@@ -9,8 +9,8 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <Card class="flex justify-center h-full items-center">
-    <div class="content-center flex flex-col items-center gap-4">
+  <Card>
+    <div class="content-center flex flex-col h-full justify-center items-center gap-4">
       <p class="text-3xl font-bold text-primary">Aún no tienes usuarios creados</p>
       <Button class="text-lg" type="primary" @click="emit('create')">
         <UserIcon />
