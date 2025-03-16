@@ -76,6 +76,8 @@ final class DoctrineAggregateRootManager implements AggregateRootManagerInterfac
             }
         }
 
+        $qb->orderBy('ar.createdAt', 'ASC');
+
         /** @var array<array-key, AR> $result */
         $result = $qb->getQuery()->getResult();
 
