@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>()
 
 interface Props {
+  users: User[],
   currentUser: User,
   entries: WorkEntry[],
 }
@@ -66,6 +67,6 @@ const pending = computed(() => new Date(pendingSeconds.value * 1000).toISOString
     <Button v-if="openEntry" class="action" type="error" @click="emit('close')">Salir</Button>
     <Button v-else class="action" type="success" @click="emit('open')">Entrar</Button>
 
-    <UserSelector :currentUser="currentUser" />
+    <UserSelector :users="users" :currentUser="currentUser" />
   </div>
 </template>

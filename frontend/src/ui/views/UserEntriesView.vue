@@ -8,6 +8,7 @@ import { container } from '@/core/container';
 import {TimestampProvider} from "@/core/shared/domain/timestamp-provider.ts";
 
 interface Props {
+  users: User[];
   currentUser: User;
   entries: WorkEntry[],
 }
@@ -41,7 +42,7 @@ function onDelete(entry: WorkEntry): void {
 
 <template>
     <div class="grid grid-rows-[auto_1fr] gap-3">
-        <UserBar :current-user="currentUser" :entries="entries" @open="onOpen" @close="onClose" />
+        <UserBar :users="users" :current-user="currentUser" :entries="entries" @open="onOpen" @close="onClose" />
         <WorkEntriesList :user="currentUser" :entries="entries" @delete="onDelete" />
     </div>
 </template>

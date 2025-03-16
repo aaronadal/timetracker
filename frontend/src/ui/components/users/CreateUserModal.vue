@@ -16,7 +16,8 @@ const name = ref('');
 
 async function onCreate(): Promise<void> {
   command.run(name.value)
-    .then((user: User) => emit('created', user));
+    .then((user: User) => emit('created', user))
+    .then(() => emit('dismiss'));
 }
 </script>
 
