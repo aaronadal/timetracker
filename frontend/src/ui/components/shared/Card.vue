@@ -10,7 +10,7 @@ const slots = useSlots();
       <slot name="header" />
     </div>
 
-    <div class="content">
+    <div class="card-content">
       <slot />
     </div>
 

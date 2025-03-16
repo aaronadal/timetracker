@@ -8,6 +8,7 @@
 
   --font-primary: hsla(224, 45%, 22%, 1);
   --font-tertiary: hsla(215, 20%, 65%, 1);
+  --font-link: hsla(243, 100%, 69%, 1);
 
   --overlay-overlay: hsla(224, 45%, 38%, 0.5);
 
@@ -30,6 +31,10 @@
 
 @utility text-tertiary {
   color: var(--font-tertiary);
+}
+
+@utility text-link {
+  color: var(--font-link);
 }
 
 @utility icon {
@@ -102,7 +107,7 @@
       @apply font-bold text-2xl align-middle text-primary text;
     }
 
-    > .content {
+    > .card-content {
       @apply gap-y-3 py-2 px-6;
     }
 
@@ -116,7 +121,7 @@
     @apply absolute top-0 bottom-0 left-0 right-0 w-full h-full flex items-center;
 
     > .backdrop {
-      @apply absolute w-full h-full;
+      @apply absolute top-0 bottom-0 left-0 right-0 w-full h-full;
       background: var(--overlay-overlay);
     }
 
@@ -125,6 +130,39 @@
 
       width: 480px;
       margin: 0 auto;
+    }
+  }
+
+  .dropdown {
+    @apply flex flex-col p-2 rounded-bl-none cursor-default;
+
+    > .backdrop {
+      @apply absolute top-0 bottom-0 left-0 right-0 w-full h-full;
+    }
+
+    > .card {
+      @apply min-w-64 relative;
+    }
+
+    .card-content {
+      @apply p-2;
+    }
+
+    .dropdown-content {
+      @apply gap-y-1;
+    }
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-2 p-2 rounded-2xl cursor-pointer;
+    @apply hover:bg-gray-100;
+
+    &.active {
+      @apply text-link;
+    }
+
+    .avatar {
+      @apply text-xs;
     }
   }
 
@@ -167,21 +205,26 @@
 
   .avatar {
     @apply relative flex justify-center items-center;
+    padding: 0.5em;
 
     > .background {
-      @apply absolute;
+      @apply absolute w-full h-full;
     }
 
     > .letters {
       @apply font-semibold text-center align-middle text;
 
+      width: 1.5em;
+      height: 1.25em;
       color: white;
       opacity: 0.99999;
     }
   }
 
   .user-selector {
-    @apply flex gap-2 items-center;
+    > .selected {
+      @apply flex gap-2 items-center cursor-pointer;
+    }
   }
 
   .user-bar {
