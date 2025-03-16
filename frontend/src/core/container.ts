@@ -21,6 +21,7 @@ import {
 } from "./tracking/application/query/all-work-entries-by-user.query";
 import {OpenEntryCommand} from "@/core/tracking/application/command/open-entry.command.ts";
 import {CloseEntryCommand} from "@/core/tracking/application/command/close-entry.command.ts";
+import {DeleteEntryCommand} from "@/core/tracking/application/command/delete-entry.command.ts";
 
 type Initializer<T> = () => T;
 
@@ -33,6 +34,7 @@ export type ServiceKey = {
 
   'Tracking.WorkEntry.Command.OpenEntry': OpenEntryCommand,
   'Tracking.WorkEntry.Command.CloseEntry': CloseEntryCommand,
+  'Tracking.WorkEntry.Command.DeleteEntry': DeleteEntryCommand,
   'Tracking.WorkEntry.Query.AllByUser': AllWorkEntriesByUserQuery,
   'Tracking.WorkEntry.Repository': WorkEntryRepositoryInterface,
 }
@@ -97,6 +99,11 @@ function initContainer(): Container {
   c.bind(
     'Tracking.WorkEntry.Command.OpenEntry',
     () => new OpenEntryCommand(c.get('Tracking.WorkEntry.Repository')),
+  );
+
+  c.bind(
+    'Tracking.WorkEntry.Command.DeleteEntry',
+    () => new DeleteEntryCommand(c.get('Tracking.WorkEntry.Repository')),
   );
 
   c.bind(

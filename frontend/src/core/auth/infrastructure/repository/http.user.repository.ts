@@ -1,6 +1,6 @@
 import type {UserRepositoryInterface} from "@/core/auth/domain/repository/user.repository.ts";
 import type {ApiClient} from "@/core/shared/domain/api/api-client.ts";
-import type {ApiCreatedResponse} from "@/core/shared/infrastructure/api/http.api-client.ts";
+import type {ApiCreatedResponse} from "@/core/shared/domain/api/api-client.ts";
 import {User} from "@/core/auth/domain/entity/user.ts";
 import {TimestampProvider} from "@/core/shared/domain/timestamp-provider.ts";
 

@@ -3,7 +3,7 @@ import {AggregateRoot} from '../../../shared/domain/entity/aggregate-root'
 export type UserId = string;
 
 export class User extends AggregateRoot {
-    public constructor(
+    constructor(
         private readonly _id: UserId,
         private readonly _name: string,
         private readonly _createdAt: number,

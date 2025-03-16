@@ -2,7 +2,7 @@ import type {UserRepositoryInterface} from "@/core/auth/domain/repository/user.r
 import type {User} from "@/core/auth/domain/entity/user.ts";
 
 export class SignUpCommand {
-  public constructor(
+  constructor(
     private readonly repo: UserRepositoryInterface,
   ) {}
 
