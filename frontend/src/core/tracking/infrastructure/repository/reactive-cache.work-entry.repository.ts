@@ -14,7 +14,7 @@ export class ReactiveCacheWorkEntryRepository implements WorkEntryRepositoryInte
   }
 
   async allByUser(user: string): Promise<WorkEntry[]> {
-    if(this.user === user || this.cache !== undefined) {
+    if(this.user === user && this.cache !== undefined) {
       return this.cache as WorkEntry[];
     }
 
