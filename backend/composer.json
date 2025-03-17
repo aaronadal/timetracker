@@ -86,7 +86,7 @@
       ],
 
       "unit": [
-        "@php bin/phpunit --configuration phpunit.xml --testsuite Full"
+        "@php bin/phpunit --configuration phpunit.xml.dist --testsuite Full"
       ],
       "unit-coverage": [
         "@unit --coverage-html var/coverage"
