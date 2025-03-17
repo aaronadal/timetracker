@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Avatar from "@/ui/components/shared/Avatar.vue";
-import type {User} from "@/core/auth/domain/entity/user.ts";
-import DropdownItem from "@/ui/components/shared/DropdownItem.vue";
-import CheckIcon from "@/ui/components/shared/icons/CheckIcon.vue";
+import Avatar from '@/ui/components/shared/Avatar.vue'
+import type { User } from '@/core/auth/domain/entity/user.ts'
+import DropdownItem from '@/ui/components/shared/DropdownItem.vue'
+import CheckIcon from '@/ui/components/shared/icons/CheckIcon.vue'
 
 interface Props {
-  user: User;
-  active: boolean;
+  user: User
+  active: boolean
 }
-defineProps<Props>();
+defineProps<Props>()
 </script>
 
 <template>

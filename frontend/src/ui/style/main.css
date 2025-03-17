@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
 
   --logo-900: hsla(224, 45%, 22%, 1);
 
@@ -93,12 +95,13 @@
     @apply flex flex-col rounded-2xl;
 
     background: white;
-    box-shadow: 0 1px 2px 0 hsla(243, 58%, 38%, 0.03),
-    0 4px 4px 0 hsla(243, 100%, 69%, 0.03),
-    0 10px 6px 0 hsla(243, 100%, 69%, 0.02),
-    0 -2px 5px 0 hsla(243, 58%, 38%, 0.02),
-    0 -9px 9px 0 hsla(243, 100%, 69%, 0.01),
-    0 -20px 12px 0 hsla(243, 100%, 69%, 0.01);
+    box-shadow:
+      0 1px 2px 0 hsla(243, 58%, 38%, 0.03),
+      0 4px 4px 0 hsla(243, 100%, 69%, 0.03),
+      0 10px 6px 0 hsla(243, 100%, 69%, 0.02),
+      0 -2px 5px 0 hsla(243, 58%, 38%, 0.02),
+      0 -9px 9px 0 hsla(243, 100%, 69%, 0.01),
+      0 -20px 12px 0 hsla(243, 100%, 69%, 0.01);
 
     > .header {
       @apply gap-4 rounded-tl-2xl rounded-tr-2xl pt-4 pr-4 pb-2 pl-6;

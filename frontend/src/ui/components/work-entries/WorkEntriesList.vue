@@ -1,42 +1,45 @@
 <script setup lang="ts">
-import type {User} from "@/core/auth/domain/entity/user.ts";
-import type {WorkEntry} from "@/core/tracking/domain/entity/work-entry.root.ts";
-import Card from "@/ui/components/shared/Card.vue";
-import GridTable from "@/ui/components/shared/GridTable.vue";
-import CloseIcon from "@/ui/components/shared/icons/CloseIcon.vue";
-import EmptyEntryList from "@/ui/components/work-entries/EmptyEntryList.vue";
+import type { User } from '@/core/auth/domain/entity/user.ts'
+import type { WorkEntry } from '@/core/tracking/domain/entity/work-entry.root.ts'
+import Card from '@/ui/components/shared/Card.vue'
+import GridTable from '@/ui/components/shared/GridTable.vue'
+import CloseIcon from '@/ui/components/shared/icons/CloseIcon.vue'
+import EmptyEntryList from '@/ui/components/work-entries/EmptyEntryList.vue'
 
 const emit = defineEmits<{
-  (evt: 'delete', entry: WorkEntry): void;
+  (evt: 'delete', entry: WorkEntry): void
 }>()
 
 interface Props {
-  user: User;
-  entries: WorkEntry[],
+  user: User
+  entries: WorkEntry[]
 }
-defineProps<Props>();
+defineProps<Props>()
 
 const getDayName = (timestamp: number) => {
-  const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-  const date = new Date(timestamp * 1000);
+  const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+  const date = new Date(timestamp * 1000)
 
-  return `${days[date.getDay()]} ${date.getDate()}`;
-};
+  return `${days[date.getDay()]} ${date.getDate()}`
+}
 
 const formatTime = (timestamp: number | null) => {
   if (!timestamp) {
-    return '';
+    return ''
   }
 
-  const date = new Date(timestamp * 1000);
+  const date = new Date(timestamp * 1000)
 
-  return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-};
+  return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+}
 </script>
 
 <template>
   <Card>
-    <div class="h-full grid grid-cols-1" :class="entries.length === 0 ? 'grid-rows-[auto_1fr]' : 'grid-rows-[auto]'">
+    <div
+      class="h-full grid grid-cols-1"
+      :class="entries.length === 0 ? 'grid-rows-[auto_1fr]' : 'grid-rows-[auto]'"
+    >
       <GridTable :cols="5">
         <template #headers>
           <div class="rounded-tl-lg">Día</div>

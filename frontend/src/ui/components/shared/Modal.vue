@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Card from "@/ui/components/shared/Card.vue";
-import CloseIcon from "@/ui/components/shared/icons/CloseIcon.vue";
+import Card from '@/ui/components/shared/Card.vue'
+import CloseIcon from '@/ui/components/shared/icons/CloseIcon.vue'
 
 const emit = defineEmits<{
-  (evt: 'dismiss'): void,
-}>();
+  (evt: 'dismiss'): void
+}>()
 </script>
 
 <template>

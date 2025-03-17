@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import {computed, toRefs} from "vue";
+import { computed, toRefs } from 'vue'
 
 interface Props {
-  cols: number;
+  cols: 3|5
 }
-const props = defineProps<Props>();
-const { cols } = toRefs(props);
+const props = defineProps<Props>()
+const { cols } = toRefs(props)
 
-const colsClass = computed(() => "grid-cols-[" + "auto_".repeat(cols.value-1) + "min-content]");
+const colsClass = computed(() => {
+  switch (cols.value) {
+    case 3:
+      return 'grid-cols-[auto_auto_min-content]'
+    case 5:
+      return 'grid-cols-[auto_auto_auto_auto_min-content]'
+
+    default:
+      return ''
+  }
+})
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-import type {WorkEntry} from "@/core/tracking/domain/entity/work-entry.root.ts";
+import type { WorkEntry } from '@/core/tracking/domain/entity/work-entry.root.ts'
 
 export interface WorkEntryRepositoryInterface {
   allByUser(user: string): Promise<WorkEntry[]>

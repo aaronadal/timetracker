@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import EmptyUserList from "@/ui/components/users/EmptyUserList.vue";
-import CreateUserModal from "@/ui/components/users/CreateUserModal.vue";
-import {ref} from "vue";
+import EmptyUserList from '@/ui/components/users/EmptyUserList.vue'
+import CreateUserModal from '@/ui/components/users/CreateUserModal.vue'
+import { ref } from 'vue'
 
-const showCreateUserModal = ref(false);
+const showCreateUserModal = ref(false)
 </script>
 
 <template>

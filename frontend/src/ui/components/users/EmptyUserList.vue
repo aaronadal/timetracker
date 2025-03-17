@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import UserIcon from "@/ui/components/shared/icons/UserIcon.vue";
-import Button from "@/ui/components/shared/Button.vue";
-import Card from "@/ui/components/shared/Card.vue";
+import UserIcon from '@/ui/components/shared/icons/UserIcon.vue'
+import Button from '@/ui/components/shared/Button.vue'
+import Card from '@/ui/components/shared/Card.vue'
 
 const emit = defineEmits<{
-  (evt: 'create'): void,
+  (evt: 'create'): void
 }>()
 </script>
 
