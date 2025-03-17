@@ -1,8 +1,9 @@
+build: docker-build
 start: docker-start
+install: composer-install
+prepare: migrations-migrate
 
 stop: docker-stop
-
-install: composer-install
 
 
 docker-build:
@@ -42,9 +43,13 @@ composer-update:
 	docker exec -it timetracker.api composer update
 
 
+yarn-install:
+	docker exec -it timetracker.app yarn install
+
+
 test-backend-static:
-	docker exec -it timetracker.api composer run psalm-clean
-	docker exec -it timetracker.api composer run phpstan-clean
+	docker exec -it timetracker.api composer run psalm
+	docker exec -it timetracker.api composer run phpstan
 
 test-backend-unit:
 	docker exec -it timetracker.api composer run unit
@@ -52,6 +57,7 @@ test-backend-unit:
 test-backend: test-backend-static test-backend-unit
 
 test-frontend-static:
+	docker exec -it timetracker.app yarn run lint
 	docker exec -it timetracker.app yarn run type-check
 
 test-frontend-unit:

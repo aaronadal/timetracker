@@ -2,4 +2,4 @@ FROM node:22
 
 WORKDIR /app
 
-CMD ["yarn", "dev"]
+CMD ["sh", "-c", "yarn install && yarn dev"]
